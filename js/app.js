@@ -12,7 +12,15 @@ let deckOfCards = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04"
 
 
 /*------------------------ Cached Element References ------------------------*/
+let add25 = document.querySelector("#25")
+let add50 = document.querySelector("#50")
+let add100 = document.querySelector("#100")
 
+let playerHand = document.querySelector(".player-hand")
+let dealerHand = document.querySelector(".dealer-hand")
+
+let addToHand = document.querySelector(".add-value")
+let holdHand = document.querySelector(".hold-value")
 
 
 /*----------------------------- Event Listeners -----------------------------*/
