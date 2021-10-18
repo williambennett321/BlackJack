@@ -95,8 +95,8 @@ if (pocketValue < playerBet) {
 
 // A function that will randomize the cards given
 let newCard = () => {
-  let idxOfCard = Math.floor(Math.random() * deckOfCards.length)
-  let cardString = 
+  let cardString = deckOfCards[Math.floor(Math.random() * deckOfCards.length)]
+  console.log(cardString)
 
 
 
