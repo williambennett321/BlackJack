@@ -88,7 +88,7 @@ if (pocketValue < playerBet) {
     pocketValue -= playerBet
     pocket.innerHTML = `Balance: $${pocketValue}`
     // if the bet is accepted, cards will be distributed to both players
-    //distributeCards()
+    //playCards()
   } 
 
 }
@@ -96,10 +96,34 @@ if (pocketValue < playerBet) {
 // A function that will randomize the cards given
 let newCard = () => {
   let cardString = deckOfCards[Math.floor(Math.random() * deckOfCards.length)]
-  console.log(cardString)
-
-
-
+  return cardString
 }
 
-
+let valueOfCards = (cardString) => {
+  if (cardString === "dA" || cardString === "hA" || cardString === "cA" || cardString === "sA") {
+    if (valueOfPHand > 10) {
+      valueOfCard = 1
+    } else {
+      valueOfCard = 11
+    }
+  } else if (cardString === "dK" || cardString === "dQ" || cardString === "dJ" || cardString === "d10" || cardString === "hK" || cardString === "hQ" || cardString === "hJ" || cardString === "h10" || cardString === "cK" || cardString === "cQ" || cardString === "cJ" || cardString === "c10" || cardString === "sK" || cardString === "sQ" || cardString === "sJ" || cardString === "s10") {
+    valueOfCard = 10
+  } else if ( cardString === "d09" || cardString === "h09" || cardString === "c09" || cardString === "s09") {
+    valueOfCard = 9
+  } else if ( cardString === "d08" || cardString === "h08" || cardString === "c08" || cardString === "s08") {
+    valueOfCard = 8
+  } else if ( cardString === "d07" || cardString === "h07" || cardString === "c07" || cardString === "s07") {
+    valueOfCard = 7
+  } else if ( cardString === "d06" || cardString === "h06" || cardString === "c06" || cardString === "s06") {
+    valueOfCard = 6
+  } else if (cardString === "d05" || cardString === "h05" || cardString === "c05" || cardString === "s05") {
+    valueOfCard = 5
+  } else if (cardString === "d04" || cardString === "h04" || cardString === "c04" || cardString === "s04") {
+    valueOfCard = 4
+  } else if (cardString === "d03" || cardString === "h03" || cardString === "c03" || cardString === "s03") {
+    valueOfCard = 3
+  } else if (cardString === "d02" || cardString === "h02" || cardString === "c02" || cardString === "s02") {
+    valueOfCard = 2
+  }
+  console.log(valueOfCard)
+}
