@@ -97,7 +97,7 @@ if (pocketValue < playerBet) {
 let newCard = () => {
   let cardString = deckOfCards[Math.floor(Math.random() * deckOfCards.length)]
   return cardString
-  deckOfCards.splice(cardString, 1)
+ cardFromDeck = deckOfCards.splice(cardString, 1)
 }
 
 let valueOfCards = (cardString) => {
@@ -133,5 +133,9 @@ let addNewCard = (hand) => {
 addCard = document.createElement("div")
 if (hand === playerHand) {
   addCard.className = "card"
+  playerHand.appendChild(addCard)
+} else if (hand === dealerHand) {
+  addcard.className = "card"
+  dealerHand.appendChild(addCard)
 }
 }
