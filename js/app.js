@@ -127,3 +127,7 @@ let valueOfCards = (cardString) => {
   }
   console.log(valueOfCard)
 }
+
+let addNewCard = (hand) => {
+
+}
