@@ -142,9 +142,9 @@ let valueOfCards = (cardString) => {
 let distributeCards = () => {
 // Grab a new card from deck, give the value of the card to the respective hand
 newCard()
-numValue = valueOfCards(newCard)
-
+numValue = valueOfCards(newCard())
 valueOfPHand = valueOfPHand + numValue
+
 
 
 
