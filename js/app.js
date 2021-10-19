@@ -88,29 +88,29 @@ if (pocketValue < playerBet) {
     pocketValue -= playerBet
     pocket.innerHTML = `Balance: $${pocketValue}`
     // if the bet is accepted, cards will be distributed to both players
-    //playCards()
+    distributeCards()
   } 
 
 }
 
 // A function that will randomize the cards given
-let newCard = () => {
+function newCard() {
   let cardString = deckOfCards[Math.floor(Math.random() * deckOfCards.length)]
   deleteCard = deckOfCards.splice("cardString", 1)
   return cardString
 }
-let addNewCard = (hand) => {
+function addNewCard(hand) {
   addCard = document.createElement("div")
-  if (hand === playerHand) {
+  if (hand === "playerHand") {
     addCard.className = "card"
-    playerHand.appendChild(addCard)
-  } else if (hand === dealerHand) {
+    player-hand.appendChild(addCard)
+  } else if (hand === "dealerHand") {
     addcard.className = "card"
-    dealerHand.appendChild(addCard)
+    dealer-hand.appendChild(addCard)
     }
   }
 
-let valueOfCards = (cardString) => {
+function valueOfCards(cardString) {
   if (cardString === "dA" || cardString === "hA" || cardString === "cA" || cardString === "sA") {
     if (valueOfPHand > 10) {
       valueOfCard = 1
@@ -139,12 +139,14 @@ let valueOfCards = (cardString) => {
   return valueOfCard
 }
 
-let distributeCards = () => {
+function distributeCards() {
 // Grab a new card from deck, give the value of the card to the respective hand
 newCard()
 numValue = valueOfCards(newCard())
 valueOfPHand += numValue
-addNewCard(playerHand)
+addNewCard("playerHand")
+
+
 
 
 
