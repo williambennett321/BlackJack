@@ -21,7 +21,7 @@ let pocketValue = 500
 
 /*------------------------ Cached Element References ------------------------*/
 
-let betOptions = document.querySelector (".bet-options")
+let betOptions = document.querySelector(".bet-options")
 let bet = document.querySelector(".bet-value")
 let placeBet = document.querySelector(".place-bet")
 let pocket = document.querySelector(".pocket")
@@ -96,9 +96,19 @@ if (pocketValue < playerBet) {
 // A function that will randomize the cards given
 let newCard = () => {
   let cardString = deckOfCards[Math.floor(Math.random() * deckOfCards.length)]
+  deleteCard = deckOfCards.splice("cardString", 1)
   return cardString
- cardFromDeck = deckOfCards.splice(cardString, 1)
 }
+let addNewCard = (hand) => {
+  addCard = document.createElement("div")
+  if (hand === playerHand) {
+    addCard.className = "card"
+    playerHand.appendChild(addCard)
+  } else if (hand === dealerHand) {
+    addcard.className = "card"
+    dealerHand.appendChild(addCard)
+    }
+  }
 
 let valueOfCards = (cardString) => {
   if (cardString === "dA" || cardString === "hA" || cardString === "cA" || cardString === "sA") {
@@ -126,16 +136,18 @@ let valueOfCards = (cardString) => {
   } else if (cardString === "d02" || cardString === "h02" || cardString === "c02" || cardString === "s02") {
     valueOfCard = 2
   }
-  console.log(valueOfCard)
+  return valueOfCard
 }
 
-let addNewCard = (hand) => {
-addCard = document.createElement("div")
-if (hand === playerHand) {
-  addCard.className = "card"
-  playerHand.appendChild(addCard)
-} else if (hand === dealerHand) {
-  addcard.className = "card"
-  dealerHand.appendChild(addCard)
-}
+let distributeCards = () => {
+// Grab a new card from deck, give the value of the card to the respective hand
+newCard()
+numValue = valueOfCards(newCard)
+
+valueOfPHand = valueOfPHand + numValue
+
+
+
+
+
 }
