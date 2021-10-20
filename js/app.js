@@ -32,6 +32,7 @@ let pocket = document.querySelector(".pocket")
 let gameOptions = document.querySelector(".in-game-options")
 let playerHand = document.querySelector(".player-hand")
 let dealerHand = document.querySelector(".dealer-hand")
+let winMsg = document.querySelector(".winLossMess")
 
 
 
@@ -119,66 +120,90 @@ function addNewCard(hand) {
 
 function valueOfCards(cardString) {
   if (cardString === "dA" || cardString === "hA" || cardString === "cA" || cardString === "sA") {
-    if (valueOfPHand > 10 || valueOfDHand > 10) {
+    if (valueOfPHand >= 10 || valueOfDHand >= 10) {
       valueOfCard = 1
+      return valueOfCard
     } else {
       valueOfCard = 11
+      return valueOfCard
     }
   } else if (cardString === "dK" || cardString === "dQ" || cardString === "dJ" || cardString === "d10" || cardString === "hK" || cardString === "hQ" || cardString === "hJ" || cardString === "h10" || cardString === "cK" || cardString === "cQ" || cardString === "cJ" || cardString === "c10" || cardString === "sK" || cardString === "sQ" || cardString === "sJ" || cardString === "s10") {
     valueOfCard = 10
+    return valueOfCard
   } else if ( cardString === "d09" || cardString === "h09" || cardString === "c09" || cardString === "s09") {
     valueOfCard = 9
+    return valueOfCard
   } else if ( cardString === "d08" || cardString === "h08" || cardString === "c08" || cardString === "s08") {
     valueOfCard = 8
+    return valueOfCard
   } else if ( cardString === "d07" || cardString === "h07" || cardString === "c07" || cardString === "s07") {
     valueOfCard = 7
+    return valueOfCard
   } else if ( cardString === "d06" || cardString === "h06" || cardString === "c06" || cardString === "s06") {
     valueOfCard = 6
+    return valueOfCard
   } else if (cardString === "d05" || cardString === "h05" || cardString === "c05" || cardString === "s05") {
     valueOfCard = 5
+    return valueOfCard
   } else if (cardString === "d04" || cardString === "h04" || cardString === "c04" || cardString === "s04") {
     valueOfCard = 4
+    return valueOfCard
   } else if (cardString === "d03" || cardString === "h03" || cardString === "c03" || cardString === "s03") {
     valueOfCard = 3
+    return valueOfCard
   } else if (cardString === "d02" || cardString === "h02" || cardString === "c02" || cardString === "s02") {
     valueOfCard = 2
+    return valueOfCard
   }
-  return valueOfCard
+  
 }
 
 function distributeCards() {
 // Grab a new card from deck, give the value of the card to the respective hand 
 
-let chosenCard = newCard()
-numValue = valueOfCards(chosenCard)
+let card1 = newCard()
+numValue = valueOfCards(card1)
 valueOfDHand += numValue
 addNewCard("dealerHand")
+console.log(valueOfDHand)
 
 
-
-newCard()
-numValue = valueOfCards(chosenCard)
+let card2 = newCard()
+numValue = valueOfCards(card2)
 valueOfPHand += numValue
 addNewCard("playerHand")
+console.log(valueOfPHand)
 
 
-
-newCard()
-numValue = valueOfCards(chosenCard)
+let card3 = newCard()
+numValue = valueOfCards(card3)
 valueOfDHand += numValue
 addNewCard("dealerHand")
+console.log(valueOfDHand)
 
-newCard()
-numValue = valueOfCards(chosenCard)
+let card4 = newCard()
+numValue = valueOfCards(card4)
 valueOfPHand += numValue
 addNewCard("playerHand")
+console.log(valueOfPHand)
 
-if (valueOfPHand > valueOfDHand) {
-  return `Player is Winner`
-} else if (valueOfPHand < valueOfDHand) {
-  return `Dealer is Winner`
-}
+determineWinner()
 
 }
+
+function determineWinner() {
+  if (valueOfPHand === 21 && valueOfDHand !== 21) {
+    winMsg.innerHTML = "Congratulations Player is the winner"
+  } else if (valueOfDHand === 21 && valueOfPHand !== 21) {
+    winMsg.innerHTML = "Congratulations Dealer is the winner"
+  } else if (valueOfPHand === valueOfDHand) {
+    winMsg.innerHTML = "It's a draw"
+  } else if (valueOfPHand > valueOfDHand) {
+    winMsg.innerHTML = "Congratulations Player is the winner"
+  } else if (valueOfPHand < valueOfDHand) {
+    winMsg.innerHTML = "Congratulations Dealer is the winner"
+  }
+}
+
 
 
