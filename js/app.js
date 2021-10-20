@@ -1,8 +1,5 @@
 /*-------------------------------- Constants --------------------------------*/
 
-const betOption1 = 25
-const betOption2 = 50
-const betOption3 = 100
 
 
 
@@ -12,20 +9,16 @@ const betOption3 = 100
 let deckOfCards = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
 let playerBet = null
-let valueOfPHand = null
-let valueOfDHand = null
+let valueOfPHand = 0
+let valueOfDHand = 0
 let card = ""
 let valueOfCard = null
-let addRandomCard = ""
-let pocketValue = 500
+let p1Hand = []
+let p2Hand = []
+let gameDeck
+
 
 /*------------------------ Cached Element References ------------------------*/
-
-let betOptions = document.querySelector(".bet-options")
-let bet = document.querySelector(".bet-value")
-let placeBet = document.querySelector(".place-bet")
-let pocket = document.querySelector(".pocket")
-
 
 
 
@@ -33,53 +26,24 @@ let gameOptions = document.querySelector(".in-game-options")
 let playerHand = document.querySelector(".player-hand")
 let dealerHand = document.querySelector(".dealer-hand")
 let winMsg = document.querySelector(".winLossMess")
-
-
+let startBtn = document.getElementById("start")
+let hitBtn = document.getElementById("hit")
+let standBtn = document.getElementById("stand")
 
 
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-//determine the bet
-betOptions.addEventListener("click", (evt) => {
-  
-  if (evt.target.id === "25") {
-    playerBet += betOption1
-  } else if (evt.target.id === "50") {
-    playerBet += betOption2
-  } else if (evt.target.id === "100") {
-    playerBet += betOption3
-  }
-  
-  bet.innerHTML = `Current Bet: $${playerBet}`
 
-})
-// by pressing place bet, I want the game to start
-placeBet.addEventListener("click", () => {
-  if (pocketValue < playerBet) {
 
-    pocket.innerHTML = "Invalid Bet: You don't have enough money"
-  } else if (pocketValue >= playerBet) {
-      pocketValue -= playerBet
-      pocket.innerHTML = `Balance: $${pocketValue}`
-      init()
-      // if the bet is accepted, cards will be distributed to both players
-    } 
-    
-  
+startBtn.addEventListener("click", handleStart)
+hitBtn.addEventListener("click", hit)
+standBtn.addEventListener("click", stand)
+
   
 
-})
 
-// setting a function to hit and stand
 
-gameOptions.addEventListener("click", (evt) => {
-if (evt.target.id === "hit") {
-  pHit()
-} else if (evt.target.id === "stand") {
-  pStand()
-}
-})
 
 
 
@@ -88,37 +52,91 @@ if (evt.target.id === "hit") {
 /*-------------------------------- Functions --------------------------------*/
 
 
-// I want the deck to reset when I run the function
+init()
+
 function init() {
-deckOfCards = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
-// run through conditionals to prevent bet from being over pocket value
-
-distributeCards()
-  
+  p1Hand = []
+  p2Hand = []
+  gameDeck = shuffle(deck)
+  render()
 }
 
-// A function that will randomize the cards given
-function newCard() {
-  let cardString = deckOfCards[Math.floor(Math.random() * deckOfCards.length)]
-  takeCardFromDeck = deckOfCards.splice("cardString", 1)
-  return cardString
-
+function hit() {
+  let cardToDraw = gameDeck.pop()
+  p1Hand.push(cardToDraw)
+  render()
 }
 
-function addNewCard(hand) {
-  let addCard = document.createElement("div")
-  addCard.classList.add("card", "large", newCard())
-  if (hand === "playerHand") {
-    
-    playerHand.appendChild(addCard)
-  } else {
-    
-    dealerHand.appendChild(addCard)
-  }
-  
-  }
+function totalCards(deck){
+  let total = 0
+  p1Hand.forEach(card => {
+    total += lookupVal(card)
+  })
+  return total
+}
 
-function valueOfCards(cardString) {
+function handleStart() {
+  // Deal two cards to each player
+  let cardToDraw = gameDeck.pop()
+  p1Hand.push(cardToDraw)
+  cardToDraw = gameDeck.pop()
+  p1Hand.push(cardToDraw)
+  cardToDraw = gameDeck.pop()
+  p2Hand.push(cardToDraw)
+  cardToDraw = gameDeck.pop()
+  p2Hand.push(cardToDraw)
+  console.log(p1Hand, p2Hand)
+  render()
+}
+
+function shuffle(cardsToShuffle) {
+  let shuffledCards = [];
+  let shuffleHolder;
+  for (i=1; i=cardsToShuffle.length; i++){
+    randIdx=Math.floor(Math.random()*cardsToShuffle.length);
+    shuffleHolder = cardsToShuffle.splice(randIdx, 1);
+    shuffledCards.push(`${shuffleHolder}`);
+  }
+  return shuffledCards;
+}
+
+
+function render() {
+  // render current hands to container elements
+  p1DeckEl.innerHTML = ''
+  p2DeckEl.innerHTML = ''
+  p1Hand.forEach(card => {
+    let cardToAppend = document.createElement('div')
+    cardToAppend.className = `card xlarge ${card}`
+    p1DeckEl.appendChild(cardToAppend)
+  })
+  p2Hand.forEach(card => {
+    let cardToAppend = document.createElement('div')
+    cardToAppend.className = `card xlarge ${card}`
+    p2DeckEl.appendChild(cardToAppend)
+  })
+}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  function valueOfCards() {
   if (cardString === "dA" || cardString === "hA" || cardString === "cA" || cardString === "sA") {
     if (valueOfPHand >= 10 || valueOfDHand >= 10) {
       valueOfCard = 1
@@ -158,38 +176,7 @@ function valueOfCards(cardString) {
   
 }
 
-function distributeCards() {
-// Grab a new card from deck, give the value of the card to the respective hand 
 
-let card1 = newCard()
-numValue = valueOfCards(card1)
-valueOfDHand += numValue
-addNewCard("dealerHand")
-console.log(valueOfDHand)
-
-
-let card2 = newCard()
-numValue = valueOfCards(card2)
-valueOfPHand += numValue
-addNewCard("playerHand")
-console.log(valueOfPHand)
-
-
-let card3 = newCard()
-numValue = valueOfCards(card3)
-valueOfDHand += numValue
-addNewCard("dealerHand")
-console.log(valueOfDHand)
-
-let card4 = newCard()
-numValue = valueOfCards(card4)
-valueOfPHand += numValue
-addNewCard("playerHand")
-console.log(valueOfPHand)
-
-determineWinner()
-
-}
 
 function determineWinner() {
   if (valueOfPHand === 21 && valueOfDHand !== 21) {
