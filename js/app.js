@@ -103,9 +103,10 @@ function newCard() {
   return cardString
 
 }
-function addNewCard(hand, cardString) {
+
+function addNewCard(hand) {
   let addCard = document.createElement("div")
-  addCard.classList.add("card", "small", "d10")
+  addCard.classList.add("card", "large", newCard())
   if (hand === "playerHand") {
     
     playerHand.appendChild(addCard)
@@ -172,4 +173,12 @@ numValue = valueOfCards(chosenCard)
 valueOfPHand += numValue
 addNewCard("playerHand")
 
+if (valueOfPHand > valueOfDHand) {
+  return `Player is Winner`
+} else if (valueOfPHand < valueOfDHand) {
+  return `Dealer is Winner`
 }
+
+}
+
+
