@@ -88,31 +88,32 @@ if (pocketValue < playerBet) {
     pocketValue -= playerBet
     pocket.innerHTML = `Balance: $${pocketValue}`
     // if the bet is accepted, cards will be distributed to both players
-    distributeCards()
+    
   } 
-
+  distributeCards()
 }
 
 // A function that will randomize the cards given
 function newCard() {
   let cardString = deckOfCards[Math.floor(Math.random() * deckOfCards.length)]
-  deleteCard = deckOfCards.splice("cardString", 1)
+  takeCardFromDeck = deckOfCards.splice("cardString", 1)
   return cardString
 }
 function addNewCard(hand) {
-  addCard = document.createElement("div")
+  let addCard = document.createElement("div")
+  addCard.classList.add("card", "small")
   if (hand === "playerHand") {
-    addCard.className = "card"
-    player-hand.appendChild(addCard)
-  } else if (hand === "dealerHand") {
-    addcard.className = "card"
-    dealer-hand.appendChild(addCard)
+    
+    playerHand.appendChild(addCard)
+  } else {
+   
+    dealerHand.appendChild(addCard)
     }
   }
 
 function valueOfCards(cardString) {
   if (cardString === "dA" || cardString === "hA" || cardString === "cA" || cardString === "sA") {
-    if (valueOfPHand > 10) {
+    if (valueOfPHand > 10 || valueOfDHand > 10) {
       valueOfCard = 1
     } else {
       valueOfCard = 11
@@ -140,17 +141,30 @@ function valueOfCards(cardString) {
 }
 
 function distributeCards() {
-// Grab a new card from deck, give the value of the card to the respective hand
+// Grab a new card from deck, give the value of the card to the respective hand 
+
+let chosenCard = newCard()
+numValue = valueOfCards(chosenCard)
+valueOfDHand += numValue
+addNewCard("dealerHand")
+
+
+
 newCard()
-numValue = valueOfCards(newCard())
+numValue = valueOfCards(chosenCard)
 valueOfPHand += numValue
 addNewCard("playerHand")
 
 
 
+newCard()
+numValue = valueOfCards(chosenCard)
+valueOfDHand += numValue
+addNewCard("dealerHand")
 
-
-
-
+newCard()
+numValue = valueOfCards(chosenCard)
+valueOfPHand += numValue
+addNewCard("playerHand")
 
 }
