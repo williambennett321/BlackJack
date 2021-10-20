@@ -101,17 +101,19 @@ function newCard() {
   let cardString = deckOfCards[Math.floor(Math.random() * deckOfCards.length)]
   takeCardFromDeck = deckOfCards.splice("cardString", 1)
   return cardString
+
 }
-function addNewCard(hand) {
+function addNewCard(hand, cardString) {
   let addCard = document.createElement("div")
-  addCard.classList.add("card", "small")
+  addCard.classList.add("card", "small", "d10")
   if (hand === "playerHand") {
     
     playerHand.appendChild(addCard)
   } else {
-   
+    
     dealerHand.appendChild(addCard)
-    }
+  }
+  
   }
 
 function valueOfCards(cardString) {
