@@ -84,7 +84,6 @@ function handleStart() {
   getHandVal(p1Hand)
   getHandVal(p2Hand)
   getTotalForHand()
-
   hideButtons.style.visibility = "visible"
 
   render()
@@ -98,20 +97,15 @@ function hit() {
   let cardToDraw = gameDeck.pop()
   p1Hand.push(cardToDraw)
   playerTotal += valueOfCards(cardToDraw)
-  if (playerTotal === 21 && dealerTotal !== 21) {
-    winMsg.innerHTML = "player Wins!"
-  } else if (dealerTotal === 21 && playerTotal !== 21) {
-    winMsg.innerHTML = "Dealer Wins!"
-  } else if (playerTotal === dealerTotal) {
-    winMsg.innerHTML = "Draw, play again!"
-  } else if (playerTotal > 21) {
-    winMsg.innerHTML = "Bust, Dealer Wins!"
-  } 
+  compareHands()
   render()
-}
+  } 
+  
+
 
 function stand() {
 compareHands()
+render()
 }
 
 function shuffle(cardsToShuffle) {
@@ -160,26 +154,25 @@ function getTotalForHand() {
   console.log(playerTotal)
   let dealerValue = getHandVal(p2Hand)
   dealerTotal += dealerValue
-console.log(dealerTotal)
 
 }
 
 function compareHands() {
-  if (playerTotal === 21 && dealerTotal !== 21) {
-    winMsg.innerHTML = "Player Wins!"
-  } else if (dealerTotal === 21 && playerTotal !== 21) {
-    winMsg.innerHTML = "Dealer Wins!"
-  } else if (playerTotal === dealerTotal) {
+    
+  if (playerTotal <= 21) {
+  if (playerTotal === dealerTotal) {
     winMsg.innerHTML = "Draw, play again!"
   } else if (playerTotal > dealerTotal) {
     winMsg.innerHTML = "Player Wins!"
   } else if (playerTotal < dealerTotal) {
     winMsg.innerHTML = "Dealer Wins!"
-  } else if (playerTotal > 21) {
-    winMsg.innerHTML = "Bust, Dealer Wins!"
-  } 
+  }  
 }
-
+  else {
+    winMsg.innerHTML = "Bust, Dealer Wins!"
+    }
+  
+  }
 
 function valueOfCards(cardString) {
   if (cardString === "dA" || cardString === "hA" || cardString === "cA" || cardString === "sA") {
@@ -215,8 +208,8 @@ function valueOfCards(cardString) {
     valueOfCard = 3
     return valueOfCard
   } else if (cardString === "d02" || cardString === "h02" || cardString === "c02" || cardString === "s02") {
-    valueOfCard = 2
-    return valueOfCard
+      valueOfCard = 2
+      return valueOfCard
   }
   
 }
