@@ -168,7 +168,7 @@ if (playerTotal === dealerTotal) {
 
 function valueOfCards(cardString) {
   if (cardString === "dA" || cardString === "hA" || cardString === "cA" || cardString === "sA") {
-    if (playerTotal > 10 || dealerTotal > 10) {
+    if (playerTotal > 10 || dealerTotal > 10 ) {
       valueOfCard = 1
       return valueOfCard
     } else if (10 >= playerTotal || dealerTotal <= 10) {
