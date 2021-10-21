@@ -92,6 +92,8 @@ function hit() {
   playerTotal += valueOfCards(cardToDraw)
   if (playerTotal > 21) {
     winMsg.innerHTML = "You Bust, Dealer Wins"
+  } else if (playerTotal === 21) {
+    winMsg.innerHTML = "Congratulations Player is the winner!"
   }
   render()
 }
@@ -152,15 +154,15 @@ console.log(dealerTotal)
 
 function compareHands() {
   if (playerTotal === 21 && dealerTotal !== 21) {
-    winMsg.innerHTML = "Congratulations Player is the winner"
+    winMsg.innerHTML = "Congratulations Player is the winner!"
   } else if (dealerTotal === 21 && playerTotal !== 21) {
-    winMsg.innerHTML = "Congratulations Dealer is the winner"
+    winMsg.innerHTML = "You lose, Dealer is the winner!"
   } else if (playerTotal === dealerTotal) {
     winMsg.innerHTML = "It's a draw"
   } else if (playerTotal > dealerTotal) {
-    winMsg.innerHTML = "Congratulations Player is the winner"
+    winMsg.innerHTML = "Congratulations Player is the winner!"
   } else if (playerTotal < dealerTotal) {
-    winMsg.innerHTML = "Congratulations Dealer is the winner"
+    winMsg.innerHTML = "You lose, Dealer is the winner!"
   } else if (playerTotal > 21) {
     winMsg.innerHTML = "Player busted, dealer wins"
   } 

@@ -1,3 +1,72 @@
+#title {
+  display: flex;
+  justify-content: center;
+  font-family: 'Inconsolata', monospace;
+  ;
+}
+body {
+  background-color: #011900;
+}
+
+.dealer-hand {
+  display: flex;
+  justify-content: center;
+}
+.player-hand {
+  display: flex;
+  justify-content: center;
+}
+
+.in-game-options {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .card {
   box-sizing: border-box;
   display: inline-block;
