@@ -16,8 +16,11 @@ BlackJack is a simple, yet fun card game that is built on chance and a small bit
 
 ### click play here to get started!
 
-# Game picture:
+# Game Images:
 
+![image](https://i.imgur.com/xaC6LLj.png)
+
+![image](https://i.imgur.com/o4iGZEZ.png)
 
 # Credit for BlackJack:
 
