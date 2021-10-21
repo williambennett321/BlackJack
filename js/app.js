@@ -29,6 +29,7 @@ let startBtn = document.getElementById("start")
 let hitBtn = document.getElementById("hit")
 let standBtn = document.getElementById("stand")
 let resetBtn = document.querySelector(".reset-btn")
+let hideButtons = document.querySelector(".hide-buttons")
 
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -63,6 +64,8 @@ function init() {
   playerTotal = 0
   dealerTotal = 0
   valueOfCard = null
+
+  hideButtons.style.visibility = "hidden"
   render()
 }
 
@@ -81,7 +84,12 @@ function handleStart() {
   getHandVal(p1Hand)
   getHandVal(p2Hand)
   getTotalForHand()
+
+  hideButtons.style.visibility = "visible"
+
   render()
+
+
 
   
 }
@@ -90,11 +98,15 @@ function hit() {
   let cardToDraw = gameDeck.pop()
   p1Hand.push(cardToDraw)
   playerTotal += valueOfCards(cardToDraw)
-  if (playerTotal > 21) {
-    winMsg.innerHTML = "You Bust, Dealer Wins"
-  } else if (playerTotal === 21) {
-    winMsg.innerHTML = "Congratulations Player is the winner!"
-  }
+  if (playerTotal === 21 && dealerTotal !== 21) {
+    winMsg.innerHTML = "player Wins!"
+  } else if (dealerTotal === 21 && playerTotal !== 21) {
+    winMsg.innerHTML = "Dealer Wins!"
+  } else if (playerTotal === dealerTotal) {
+    winMsg.innerHTML = "Draw, play again!"
+  } else if (playerTotal > 21) {
+    winMsg.innerHTML = "Bust, Dealer Wins!"
+  } 
   render()
 }
 
@@ -154,24 +166,24 @@ console.log(dealerTotal)
 
 function compareHands() {
   if (playerTotal === 21 && dealerTotal !== 21) {
-    winMsg.innerHTML = "Congratulations Player is the winner!"
+    winMsg.innerHTML = "Player Wins!"
   } else if (dealerTotal === 21 && playerTotal !== 21) {
-    winMsg.innerHTML = "You lose, Dealer is the winner!"
+    winMsg.innerHTML = "Dealer Wins!"
   } else if (playerTotal === dealerTotal) {
-    winMsg.innerHTML = "It's a draw"
+    winMsg.innerHTML = "Draw, play again!"
   } else if (playerTotal > dealerTotal) {
-    winMsg.innerHTML = "Congratulations Player is the winner!"
+    winMsg.innerHTML = "Player Wins!"
   } else if (playerTotal < dealerTotal) {
-    winMsg.innerHTML = "You lose, Dealer is the winner!"
+    winMsg.innerHTML = "Dealer Wins!"
   } else if (playerTotal > 21) {
-    winMsg.innerHTML = "Player busted, dealer wins"
+    winMsg.innerHTML = "Bust, Dealer Wins!"
   } 
 }
 
 
 function valueOfCards(cardString) {
   if (cardString === "dA" || cardString === "hA" || cardString === "cA" || cardString === "sA") {
-    if (playerTotal >= 10 || dealerTotal >= 10) {
+    if (playerTotal > 10 || dealerTotal > 10) {
       valueOfCard = 1
       return valueOfCard
     } else if (10 >= playerTotal || dealerTotal <= 10) {
