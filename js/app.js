@@ -96,15 +96,8 @@ function hit() {
   render()
 }
 
-<<<<<<< HEAD
-// A function that will randomize the cards given
-let newRandomCard = () => {
-  let cardString = deckOfCards[Math.floor(Math.random() * deckOfCards.length)]
-  return cardString
-=======
 function stand() {
 compareHands()
->>>>>>> main
 }
 let addCardToHand = () => {
   let newCard = document.createElement("div")
