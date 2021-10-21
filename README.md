@@ -11,5 +11,6 @@ BlackJack is a simple, yet fun card game that is built on chance and a small bit
 <p> 7) When the winner is determined you can press reset to play again! </p>
 
 <h1>Play Game Here!</h1>
-[here](https://williambennett321.github.io/BlackJack/)
+
+[Play Here!](https://williambennett321.github.io/BlackJack/)
 
