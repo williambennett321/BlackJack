@@ -1,7 +1,7 @@
-<h1>BlackJack</h1>
-<p>BlackJack is a simple, yet fun card game that is built on chance and a small bit of skill.
+# BlackJack
+BlackJack is a simple, yet fun card game that is built on chance and a small bit of skill.
 
-<h1> How to play: </h1>
+# How to play: 
 <p> 1) press the start button </p>
 <p> 2) dealer hand will have 2 cards </p>
 <p> 3) The player can hit or stand </p>
@@ -11,5 +11,5 @@
 <p> 7) When the winner is determined you can press reset to play again! </p>
 
 <h1>Play Game Here!</h1>
-<link src=">
+[here](https://williambennett321.github.io/BlackJack/)
 
