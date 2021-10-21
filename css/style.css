@@ -1,3 +1,144 @@
+#title {
+  display: flex;
+  justify-content: center;
+  font-family: 'Inconsolata', monospace;
+  font-size: 50px;
+  color: #106D0B;
+  ;
+}
+body {
+  background-color: #011900;
+  
+}
+
+.start-btn {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 25px;
+}
+
+.dealer-hand {
+  display: flex;
+  justify-content: center;
+}
+.player-hand {
+  display: flex;
+  justify-content: center;
+}
+
+.in-game-options {
+  display: flex;
+  justify-content: center;
+}
+#reset {
+  display: flex; 
+  justify-content: center;
+  padding: 25px;
+}
+
+.add-value {
+  padding: 0px 10px;
+  margin: 0px 10px 0px 0px;
+  background-color: red;
+  font-family: 'Inconsolata', monospace;
+  font-size: 20px;
+  
+}
+.hold-value {
+  padding: 0px 4px;
+  background-color: #106D0B;
+  font-family: 'Inconsolata', monospace;
+  font-size: 20px;
+  
+}
+.reset-btn {
+  background-color: yellow;
+  font-family: 'Inconsolata', monospace;
+  font-size: 20px;
+  
+
+}
+
+#start {
+  font-family: 'Inconsolata', monospace;
+  font-size: 20px;
+  background-color: darkslategray;
+}
+
+.add-value:hover {
+background-color: black;
+color: red;
+}
+
+.hold-value:hover {
+  background-color: black;
+  color: #106D0B ;
+  
+  }
+
+  .reset-btn:hover {
+    background-color: black;
+    color: yellow;
+  }
+
+#start:hover {
+  background-color: black;
+  color: darkslategray;
+}
+
+.hide-buttons {
+  visibility: hidden;
+}
+
+.winLossMess {
+  display: flex;
+  justify-content: center;
+  font-family: 'Inconsolata', monospace;
+  font-size: 50px;
+  color: #106D0B
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .card {
   box-sizing: border-box;
   display: inline-block;
