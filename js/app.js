@@ -36,7 +36,8 @@ let standBtn = document.getElementById("stand")
 
 
 
-startBtn.addEventListener("click", handleStart)
+startBtn.addEventListener("click", handleStart) 
+
 hitBtn.addEventListener("click", hit)
 standBtn.addEventListener("click", stand)
 
@@ -72,17 +73,24 @@ function handleStart() {
   cardToDraw = gameDeck.pop()
   p2Hand.push(cardToDraw)
   console.log(p1Hand, p2Hand)
+  getHandVal(p1Hand)
+  getHandVal(p2Hand)
+  compareHands()
   render()
+
+  
 }
 
 function hit() {
   let cardToDraw = gameDeck.pop()
   p1Hand.push(cardToDraw)
+  getHandVal(p1Hand)
+  console.log(p1Hand)
   render()
 }
 
 function stand() {
-
+return p1Hand
 }
 
 function shuffle(cardsToShuffle) {
@@ -134,14 +142,20 @@ function compareHands() {
   let dealerValue = getHandVal(p2Hand)
   dealerTotal += dealerValue
 console.log(dealerTotal)
-  winnerMsg(playerTotal, dealerTotal)
-
+  winner(playerTotal, dealerTotal)
 
 }
 
 
 
-function winnerMsg(valueOfPHand, valueOfDHand) {
+  // conditional that  renders loss if player or dealer bust
+  
+  // conditional that renders win if player or dealer have 21
+
+  //conditional that renders win if player > dealer vice versa
+
+
+function winner(valueOfPHand, valueOfDHand) {
   if (valueOfPHand === 21 && valueOfDHand !== 21) {
     winMsg.innerHTML = "Congratulations Player is the winner"
   } else if (valueOfDHand === 21 && valueOfPHand !== 21) {
@@ -152,7 +166,9 @@ function winnerMsg(valueOfPHand, valueOfDHand) {
     winMsg.innerHTML = "Congratulations Player is the winner"
   } else if (valueOfPHand < valueOfDHand) {
     winMsg.innerHTML = "Congratulations Dealer is the winner"
-  }
+  } else if (valueOfPHand > 21) {
+    winMsg.innerHTML = "Player busted, dealer wins"
+  } 
 }
 
 
