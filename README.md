@@ -12,5 +12,23 @@ BlackJack is a simple, yet fun card game that is built on chance and a small bit
 
 <h1>Play Game Here!</h1>
 
-[Play Here!](https://williambennett321.github.io/BlackJack/)
+[Play Here!](https://williambennett321.github.io/BlackJack/) 
 
+### click play here to get started!
+
+# Game picture:
+
+
+# Credit for BlackJack:
+
+CSS Card Deck : Credit to [BenManley](https://www.linkedin.com/in/benjamintmanley/)
+
+# Technology:
+
+HTML, CSS, and JavaScript were used to create this game!
+
+# Next steps:
+
+1. create functionality for dealer to hit or stand
+2. add CSS to game to give it more appeal
+3. add functionality to give the game more realism
