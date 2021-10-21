@@ -6,16 +6,16 @@
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let deckOfCards = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+let deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
-let playerBet = null
-let valueOfPHand = 0
-let valueOfDHand = 0
+let numPHand = null
+let numDHand = null
 let card = ""
 let valueOfCard = null
 let p1Hand = []
 let p2Hand = []
 let gameDeck
+let cardString
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -23,8 +23,8 @@ let gameDeck
 
 
 let gameOptions = document.querySelector(".in-game-options")
-let playerHand = document.querySelector(".player-hand")
-let dealerHand = document.querySelector(".dealer-hand")
+let p1DeckEl = document.querySelector(".player-hand")
+let p2DeckEl = document.querySelector(".dealer-hand")
 let winMsg = document.querySelector(".winLossMess")
 let startBtn = document.getElementById("start")
 let hitBtn = document.getElementById("hit")
@@ -61,20 +61,6 @@ function init() {
   render()
 }
 
-function hit() {
-  let cardToDraw = gameDeck.pop()
-  p1Hand.push(cardToDraw)
-  render()
-}
-
-function totalCards(deck){
-  let total = 0
-  p1Hand.forEach(card => {
-    total += lookupVal(card)
-  })
-  return total
-}
-
 function handleStart() {
   // Deal two cards to each player
   let cardToDraw = gameDeck.pop()
@@ -87,6 +73,16 @@ function handleStart() {
   p2Hand.push(cardToDraw)
   console.log(p1Hand, p2Hand)
   render()
+}
+
+function hit() {
+  let cardToDraw = gameDeck.pop()
+  p1Hand.push(cardToDraw)
+  render()
+}
+
+function stand() {
+
 }
 
 function shuffle(cardsToShuffle) {
@@ -107,38 +103,62 @@ function render() {
   p2DeckEl.innerHTML = ''
   p1Hand.forEach(card => {
     let cardToAppend = document.createElement('div')
-    cardToAppend.className = `card xlarge ${card}`
+    cardToAppend.className = `card large ${card}`
     p1DeckEl.appendChild(cardToAppend)
   })
   p2Hand.forEach(card => {
     let cardToAppend = document.createElement('div')
-    cardToAppend.className = `card xlarge ${card}`
+    cardToAppend.className = `card large ${card}`
     p2DeckEl.appendChild(cardToAppend)
   })
+
 }
+
+function getHandVal(hand) {
+  let total = 0
+  hand.forEach(str => {
+
+  let numValue = valueOfCards(str)
+  total += numValue
   
+  })
+  return total
+}
+
+function compareHands() {
+  let playerTotal = 0
+  let dealerTotal = 0
+  let playerValue = getHandVal(p1Hand)
+  playerTotal += playerValue
+  console.log(playerTotal)
+  let dealerValue = getHandVal(p2Hand)
+  dealerTotal += dealerValue
+console.log(dealerTotal)
+  winnerMsg(playerTotal, dealerTotal)
+
+
+}
 
 
 
+function winnerMsg(valueOfPHand, valueOfDHand) {
+  if (valueOfPHand === 21 && valueOfDHand !== 21) {
+    winMsg.innerHTML = "Congratulations Player is the winner"
+  } else if (valueOfDHand === 21 && valueOfPHand !== 21) {
+    winMsg.innerHTML = "Congratulations Dealer is the winner"
+  } else if (valueOfPHand === valueOfDHand) {
+    winMsg.innerHTML = "It's a draw"
+  } else if (valueOfPHand > valueOfDHand) {
+    winMsg.innerHTML = "Congratulations Player is the winner"
+  } else if (valueOfPHand < valueOfDHand) {
+    winMsg.innerHTML = "Congratulations Dealer is the winner"
+  }
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  function valueOfCards() {
+function valueOfCards(cardString) {
   if (cardString === "dA" || cardString === "hA" || cardString === "cA" || cardString === "sA") {
-    if (valueOfPHand >= 10 || valueOfDHand >= 10) {
+    if (numPHand >= 10 || numDHand >= 10) {
       valueOfCard = 1
       return valueOfCard
     } else {
@@ -175,22 +195,3 @@ function render() {
   }
   
 }
-
-
-
-function determineWinner() {
-  if (valueOfPHand === 21 && valueOfDHand !== 21) {
-    winMsg.innerHTML = "Congratulations Player is the winner"
-  } else if (valueOfDHand === 21 && valueOfPHand !== 21) {
-    winMsg.innerHTML = "Congratulations Dealer is the winner"
-  } else if (valueOfPHand === valueOfDHand) {
-    winMsg.innerHTML = "It's a draw"
-  } else if (valueOfPHand > valueOfDHand) {
-    winMsg.innerHTML = "Congratulations Player is the winner"
-  } else if (valueOfPHand < valueOfDHand) {
-    winMsg.innerHTML = "Congratulations Dealer is the winner"
-  }
-}
-
-
-
