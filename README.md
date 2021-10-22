@@ -28,7 +28,10 @@ CSS Card Deck : Credit to [BenManley](https://www.linkedin.com/in/benjamintmanle
 
 # Technology:
 
-HTML, CSS, and JavaScript were used to create this game!
++ HTML
++ CSS
++ JavaScript
++ Git
 
 # Next steps:
 
